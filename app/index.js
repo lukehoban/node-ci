@@ -1,8 +1,11 @@
 var express = require('express'),
     http = require('http'),
+    morgan = require('morgan'),
     redis = require('redis');
 
 var app = express();
+
+app.use(morgan('combined'));
 
 var client = redis.createClient(
   process.env.REDIS_1_PORT_6379_TCP_PORT || '127.0.01',
@@ -12,7 +15,7 @@ var client = redis.createClient(
 app.get('/', function(req, res, next) {
   client.incr('visits', function(err, visits) {
     if(err) return next(err);
-    res.send('You have viewed this page ' + visits + ' times!');
+    res.send('<h1>Counter</h1><br/>You have viewed this page ' + visits + ' times!');
   });
 });
 
