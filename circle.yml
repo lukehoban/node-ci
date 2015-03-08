@@ -8,7 +8,7 @@ dependencies:
 
 test:
   override:
-    - docker-compose run web '/src/node_modules/.bin/mocha'
+    - docker-compose run --no-deps web '/src/node_modules/.bin/mocha'
 
 deployment:
   hub:
