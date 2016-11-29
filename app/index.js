@@ -15,7 +15,7 @@ var client = redis.createClient(
 app.get('/', function(req, res, next) {
   client.incr('visits', function(err, visits) {
     if(err) return next(err);
-    res.send('<h1>Nice Demo Counter</h1><br/>You have viewed this page ' + visits + ' times recently!\n');
+    res.send('<h1>Nice Demo Counter</h1><br/>You have viewed this page ' + visits + ' times!\n');
   });
 });
 
